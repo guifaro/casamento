@@ -12,24 +12,24 @@
     const weddingDate = new Date('2027-04-23T16:00:00-05:00'); // Horário de Cancún (CDT = UTC-5)
 
     function updateCountdown() {
-        const now  = new Date();
+        const now = new Date();
         const diff = weddingDate - now;
 
         if (diff <= 0) {
-            document.getElementById('days').textContent    = '0';
-            document.getElementById('hours').textContent   = '0';
+            document.getElementById('days').textContent = '0';
+            document.getElementById('hours').textContent = '0';
             document.getElementById('minutes').textContent = '0';
             document.getElementById('seconds').textContent = '0';
             return;
         }
 
-        const days    = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours   = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-        document.getElementById('days').textContent    = String(days).padStart(2, '0');
-        document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
         document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
         document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
     }
@@ -57,7 +57,7 @@
        3. MENU MOBILE
     ------------------------------------------------------- */
     const navToggle = document.getElementById('navToggle');
-    const navLinks  = document.getElementById('navLinks');
+    const navLinks = document.getElementById('navLinks');
 
     navToggle.addEventListener('click', function () {
         const isOpen = navLinks.classList.toggle('open');
@@ -93,7 +93,7 @@
 
     faqButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
-            const answer   = btn.nextElementSibling;
+            const answer = btn.nextElementSibling;
             const expanded = btn.getAttribute('aria-expanded') === 'true';
 
             // Fecha todos os outros itens
@@ -150,8 +150,8 @@
        7. COPIAR CHAVE PIX
     ------------------------------------------------------- */
     window.copyPixKey = function () {
-        const keyEl  = document.getElementById('pixKeyValue');
-        const msgEl  = document.getElementById('pixCopiedMsg');
+        const keyEl = document.getElementById('pixKeyValue');
+        const msgEl = document.getElementById('pixCopiedMsg');
         const keyText = keyEl ? keyEl.textContent.trim() : '';
 
         if (!keyText || keyText === 'SUA_CHAVE_PIX_AQUI') {
@@ -171,14 +171,14 @@
         const ta = document.createElement('textarea');
         ta.value = text;
         ta.style.position = 'fixed';
-        ta.style.opacity  = '0';
+        ta.style.opacity = '0';
         document.body.appendChild(ta);
         ta.focus();
         ta.select();
         try {
             document.execCommand('copy');
             showPixCopied(msgEl);
-        } catch (_) {}
+        } catch (_) { }
         document.body.removeChild(ta);
     }
 
@@ -191,9 +191,9 @@
     /* -------------------------------------------------------
        8. FORMULÁRIO RSVP — VALIDAÇÃO E ENVIO
     ------------------------------------------------------- */
-    const rsvpForm    = document.getElementById('rsvpForm');
+    const rsvpForm = document.getElementById('rsvpForm');
     const rsvpSuccess = document.getElementById('rsvpSuccess');
-    const submitBtn   = document.getElementById('submitBtn');
+    const submitBtn = document.getElementById('submitBtn');
 
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', function (e) {
@@ -215,7 +215,7 @@
 
             // Desabilitar botão durante o envio
             if (submitBtn) {
-                submitBtn.disabled  = true;
+                submitBtn.disabled = true;
                 submitBtn.textContent = 'Enviando...';
             }
 
@@ -225,35 +225,35 @@
             const formData = new FormData(rsvpForm);
 
             fetch(rsvpForm.action, {
-                method:  'POST',
-                body:    formData,
+                method: 'POST',
+                body: formData,
                 headers: { 'Accept': 'application/json' }
             })
-            .then(function (resp) {
-                if (resp.ok) {
-                    rsvpForm.style.display    = 'none';
-                    rsvpSuccess.style.display = 'block';
-                    rsvpSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                    throw new Error('Erro no envio');
-                }
-            })
-            .catch(function () {
-                if (submitBtn) {
-                    submitBtn.disabled    = false;
-                    submitBtn.textContent = 'Confirmar Presença ♥';
-                }
-                alert('Ocorreu um erro ao enviar. Tente novamente ou entre em contato conosco.');
-            });
+                .then(function (resp) {
+                    if (resp.ok) {
+                        rsvpForm.style.display = 'none';
+                        rsvpSuccess.style.display = 'block';
+                        rsvpSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        throw new Error('Erro no envio');
+                    }
+                })
+                .catch(function () {
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'Confirmar Presença ♥';
+                    }
+                    alert('Ocorreu um erro ao enviar. Tente novamente ou entre em contato conosco.');
+                });
         });
     }
 
     function validateForm() {
         let valid = true;
 
-        const nomeInput  = document.getElementById('nome');
+        const nomeInput = document.getElementById('nome');
         const emailInput = document.getElementById('email');
-        const nomeError  = document.getElementById('nomeError');
+        const nomeError = document.getElementById('nomeError');
         const emailError = document.getElementById('emailError');
 
         // Valida nome
