@@ -11,6 +11,7 @@
     --gold: #C9A96E;
     --gold-light: #E8D5A3;
     --gold-dark: #9A7945;
+    --monogram: #4A3728;
     --coral: #E8896A;
     --coral-light: #F4B49A;
     --teal: #5CC8C3;
@@ -24,7 +25,7 @@
 
     /* Tipografia */
     --font-heading: 'Cormorant Garamond', Georgia, serif;
-    --font-script: 'Dancing Script', cursive;
+    --font-script: 'Great Vibes', 'Dancing Script', cursive;
     --font-body: 'Lato', 'Helvetica Neue', sans-serif;
 
     /* Espaçamentos */
@@ -155,8 +156,8 @@ p:last-child {
 
 .btn-hero {
     background: transparent;
-    color: var(--white);
-    border: 2px solid rgba(255, 255, 255, 0.85);
+    color: var(--monogram);
+    border: 2px solid rgba(148, 121, 75, 0.85);
     padding: 0.85rem 2.5rem;
     font-size: 0.85rem;
     letter-spacing: 0.12em;
@@ -167,9 +168,9 @@ p:last-child {
 .btn-hero:hover,
 .btn-hero:focus {
     background: rgba(255, 255, 255, 0.15);
-    border-color: var(--white);
+    border-color: var(--monogram);
     transform: translateY(-2px);
-    outline: 2px solid var(--white);
+    outline: 2px solid var(--monogram);
     outline-offset: 2px;
 }
 
@@ -188,7 +189,7 @@ p:last-child {
 
 .section-title {
     font-size: clamp(2rem, 4vw, 3rem);
-    color: var(--brown);
+    color: var(--monogram);
     margin-bottom: 0.5rem;
     font-weight: 300;
     letter-spacing: 0.04em;
@@ -221,6 +222,13 @@ p:last-child {
 .section-divider span {
     color: var(--gold);
     font-size: 0.85rem;
+}
+
+.divider-img {
+    height: 32px;
+    width: auto;
+    mix-blend-mode: multiply;
+    opacity: 0.85;
 }
 
 /* -------------------------------------------------------
@@ -259,7 +267,7 @@ p:last-child {
 }
 
 .navbar.scrolled .nav-logo {
-    color: var(--gold);
+    color: var(--monogram);
 }
 
 .nav-links {
@@ -273,7 +281,7 @@ p:last-child {
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     transition: color 0.3s;
     position: relative;
     padding-bottom: 2px;
@@ -295,8 +303,18 @@ p:last-child {
     width: 100%;
 }
 
+/* Subtle translucent background for navbar when over hero */
+.navbar:not(.scrolled) {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.22), rgba(0,0,0,0));
+    backdrop-filter: blur(6px);
+}
+.navbar:not(.scrolled) .nav-logo,
+.navbar:not(.scrolled) .nav-link {
+    color: rgba(255,255,255,0.95);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.48);
+}
 .navbar.scrolled .nav-link {
-    color: var(--brown-mid);
+    color: var(--monogram);
 }
 
 .navbar.scrolled .nav-link::after {
@@ -324,7 +342,7 @@ p:last-child {
 }
 
 .navbar.scrolled .nav-toggle span {
-    background: var(--brown);
+    background: var(--monogram);
 }
 
 .nav-toggle.open span:nth-child(1) {
@@ -458,9 +476,10 @@ p:last-child {
 
 .hero-names {
     font-family: var(--font-heading);
+    font-style: italic;
     font-size: clamp(2.2rem, 6vw, 4rem);
     font-weight: 300;
-    color: var(--white);
+    color: var(--monogram);
     letter-spacing: 0.06em;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
     margin: 0.2rem 0;
@@ -468,7 +487,7 @@ p:last-child {
 
 .hero-date {
     font-size: clamp(1rem, 2.5vw, 1.4rem);
-    color: var(--gold-light);
+    color: var(--monogram);
     font-weight: 300;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -477,7 +496,7 @@ p:last-child {
 
 .hero-location {
     font-size: clamp(0.8rem, 2vw, 1rem);
-    color: rgba(255, 255, 255, 0.82);
+    color: var(--monogram);
     letter-spacing: 0.08em;
     text-transform: uppercase;
     font-weight: 300;
@@ -507,7 +526,7 @@ p:last-child {
     font-family: var(--font-heading);
     font-size: clamp(1.6rem, 4vw, 2.4rem);
     font-weight: 600;
-    color: var(--white);
+    color: var(--monogram);
     line-height: 1;
 }
 
@@ -515,13 +534,13 @@ p:last-child {
     font-size: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    color: var(--gold-light);
+    color: var(--monogram);
     margin-top: 2px;
 }
 
 .countdown-sep {
     font-size: 1.8rem;
-    color: var(--gold-light);
+    color: var(--monogram);
     line-height: 1;
     margin-bottom: 14px;
     opacity: 0.7;
@@ -567,10 +586,18 @@ p:last-child {
 }
 
 .welcome-ornament {
-    color: var(--gold);
-    letter-spacing: 0.4em;
-    font-size: 0.75rem;
-    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+    margin: 1.2rem 0;
+}
+
+.ornament-img {
+    height: 44px;
+    width: auto;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
 }
 
 .welcome-quote {
@@ -875,6 +902,24 @@ p:last-child {
     line-height: 1.6;
 }
 
+.dresscode-link {
+    display: inline-block;
+    margin: 0.1rem 0 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    border-bottom: 1px solid rgba(58, 173, 168, 0.45);
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.dresscode-link:hover,
+.dresscode-link:focus {
+    color: var(--gold-dark);
+    border-color: rgba(154, 121, 69, 0.55);
+}
+
 /* Mini-cronograma do dia do casamento */
 .mini-schedule {
     display: flex;
@@ -908,7 +953,6 @@ p:last-child {
     background: var(--gold);
     border: 2px solid var(--white);
     border-radius: 50%;
-    margin-left: -1.37rem;
     box-shadow: 0 0 0 2px var(--gold-light);
     flex-shrink: 0;
 }
@@ -1488,6 +1532,49 @@ p:last-child {
     background: var(--cream);
 }
 
+.dresscode-examples {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--gold-light);
+}
+
+.dresscode-examples-title {
+    font-size: 1rem;
+    color: var(--brown);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.dresscode-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.dresscode-card {
+    background: var(--white);
+    border: 1px solid var(--gold-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(74, 55, 40, 0.08);
+}
+
+.dresscode-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.dresscode-card figcaption {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--brown-mid);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: center;
+}
+
 .faq-answer.open {
     max-height: 400px;
 }
@@ -1515,10 +1602,6 @@ p:last-child {
 }
 
 .footer-monogram {
-    font-family: var(--font-script);
-    font-size: 3rem;
-    color: var(--gold-light);
-    line-height: 1;
     margin-bottom: 0.5rem;
 }
 
@@ -1657,7 +1740,7 @@ p:last-child {
 
     .nav-links .nav-link {
         font-size: 1.1rem;
-        color: var(--brown) !important;
+        color: var(--monogram) !important;
     }
 
     .nav-toggle {

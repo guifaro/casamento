@@ -616,7 +616,6 @@ Após tudo configurado, o site estará disponível nos seguintes endereços:
 |----------|-----|
 | **GitHub Pages (imediato)** | `https://SEU_USUARIO.github.io/casamento` |
 | **Domínio personalizado (após propagação)** | `https://camilanigriseguilhermefaro.com` |
-| **Com www** | `https://www.camilanigriseguilhermefaro.com` |
 
 ---
 

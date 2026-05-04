@@ -136,12 +136,38 @@
     ------------------------------------------------------- */
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            const target = document.querySelector(href);
             if (target) {
                 e.preventDefault();
-                const navHeight = navbar ? navbar.offsetHeight : 0;
-                const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
-                window.scrollTo({ top: top, behavior: 'smooth' });
+
+                // If the target is inside a FAQ answer, open that FAQ item first
+                const faqAnswer = target.closest('.faq-answer');
+                if (faqAnswer) {
+                    // Close others
+                    faqButtons.forEach(function (other) {
+                        other.setAttribute('aria-expanded', 'false');
+                        if (other.nextElementSibling) other.nextElementSibling.classList.remove('open');
+                    });
+
+                    // Open this one
+                    const btn = faqAnswer.previousElementSibling;
+                    if (btn && btn.classList.contains('faq-btn')) {
+                        btn.setAttribute('aria-expanded', 'true');
+                        faqAnswer.classList.add('open');
+                    }
+
+                    // Scroll to the FAQ answer (small delay to allow layout changes)
+                    setTimeout(function () {
+                        const navHeight = navbar ? navbar.offsetHeight : 0;
+                        const top = faqAnswer.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+                        window.scrollTo({ top: top, behavior: 'smooth' });
+                    }, 80);
+                } else {
+                    const navHeight = navbar ? navbar.offsetHeight : 0;
+                    const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                }
             }
         });
     });
@@ -234,6 +260,18 @@
                         rsvpForm.style.display = 'none';
                         rsvpSuccess.style.display = 'block';
                         rsvpSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        // Após 8 segundos, direcionar para a seção de presentes
+                        setTimeout(function () {
+                            const target = document.getElementById('presentes');
+                            if (target) {
+                                const navHeight = navbar ? navbar.offsetHeight : 0;
+                                const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
+                                window.scrollTo({ top: top, behavior: 'smooth' });
+                            } else {
+                                // fallback: usar hash
+                                window.location.hash = '#presentes';
+                            }
+                        }, 8000);
                     } else {
                         throw new Error('Erro no envio');
                     }
