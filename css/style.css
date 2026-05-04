@@ -840,6 +840,16 @@ p:last-child {
     border-bottom: 1px solid var(--cream-mid);
 }
 
+/* allow the date block to shrink so the icon remains right-aligned on small screens */
+.agenda-card-header .agenda-date-block {
+    min-width: 0;
+    flex: 1 1 auto;
+}
+.agenda-card-header .agenda-icon-wrap {
+    margin-left: 1rem;
+    flex: 0 0 auto;
+}
+
 .agenda-date-block {
     display: flex;
     flex-direction: column;
@@ -1383,6 +1393,10 @@ p:last-child {
 
 .pix-qr-col {
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .pix-qr-col h3,
@@ -1394,7 +1408,7 @@ p:last-child {
 }
 
 .qr-wrapper {
-    display: inline-block;
+    display: block;
     padding: 1rem;
     background: var(--cream);
     border: 2px solid var(--gold-light);
@@ -1403,8 +1417,10 @@ p:last-child {
 }
 
 .pix-qr-img {
+    display: block;
+    margin: 0 auto;
     width: 180px;
-    height: 180px;
+    height: auto;
     border-radius: 8px;
 }
 
@@ -1861,6 +1877,7 @@ p:last-child {
         align-items: flex-start;
         gap: 1rem;
         padding-right: 5rem;
+        position: relative;
     }
 
     .agenda-icon-wrap {
@@ -1868,6 +1885,10 @@ p:last-child {
         height: 2.9rem;
         font-size: 2.15rem;
         align-self: center;
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .mini-schedule {
