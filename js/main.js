@@ -91,24 +91,47 @@
     ------------------------------------------------------- */
     const faqButtons = document.querySelectorAll('.faq-btn');
 
+    function setFaqExpanded(btn, expanded) {
+        const answer = btn.nextElementSibling;
+        if (!answer) return;
+
+        btn.setAttribute('aria-expanded', String(expanded));
+        answer.classList.toggle('open', expanded);
+        answer.style.maxHeight = expanded ? answer.scrollHeight + 'px' : '';
+    }
+
+    function refreshOpenFaqHeights() {
+        faqButtons.forEach(function (btn) {
+            const answer = btn.nextElementSibling;
+            if (!answer) return;
+
+            if (btn.getAttribute('aria-expanded') === 'true') {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        });
+    }
+
     faqButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
-            const answer = btn.nextElementSibling;
             const expanded = btn.getAttribute('aria-expanded') === 'true';
 
             // Fecha todos os outros itens
             faqButtons.forEach(function (other) {
                 if (other !== btn) {
-                    other.setAttribute('aria-expanded', 'false');
-                    other.nextElementSibling.classList.remove('open');
+                    setFaqExpanded(other, false);
                 }
             });
 
             // Alterna o atual
-            btn.setAttribute('aria-expanded', String(!expanded));
-            answer.classList.toggle('open', !expanded);
+            setFaqExpanded(btn, !expanded);
         });
     });
+
+    document.querySelectorAll('.faq-answer img').forEach(function (img) {
+        img.addEventListener('load', refreshOpenFaqHeights);
+    });
+
+    window.addEventListener('resize', refreshOpenFaqHeights, { passive: true });
 
     /* -------------------------------------------------------
        5. SCROLL REVEAL — ANIMAÇÕES DE ENTRADA
@@ -146,19 +169,18 @@
                 if (faqAnswer) {
                     // Close others
                     faqButtons.forEach(function (other) {
-                        other.setAttribute('aria-expanded', 'false');
-                        if (other.nextElementSibling) other.nextElementSibling.classList.remove('open');
+                        setFaqExpanded(other, false);
                     });
 
                     // Open this one
                     const btn = faqAnswer.previousElementSibling;
                     if (btn && btn.classList.contains('faq-btn')) {
-                        btn.setAttribute('aria-expanded', 'true');
-                        faqAnswer.classList.add('open');
+                        setFaqExpanded(btn, true);
                     }
 
                     // Scroll to the FAQ answer (small delay to allow layout changes)
                     setTimeout(function () {
+                        refreshOpenFaqHeights();
                         const navHeight = navbar ? navbar.offsetHeight : 0;
                         const top = faqAnswer.getBoundingClientRect().top + window.scrollY - navHeight - 16;
                         window.scrollTo({ top: top, behavior: 'smooth' });
