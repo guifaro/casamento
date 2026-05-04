@@ -350,23 +350,21 @@ p:last-child {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80');
+    background-image: url('../assets/images/hero-bg.png');
     /* 📸 HERO BACKGROUND IMAGE
        Substitua a URL acima pela sua foto (ex: foto dos noivos, do hotel, da praia).
        Para usar uma imagem local: url('assets/images/hero.jpg')
        Salve a foto em 700px+ de largura para melhor qualidade. */
     background-size: cover;
-    background-position: center top;
+    background-position: center;
+    background-attachment: fixed;
     overflow: hidden;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom,
-            rgba(35, 20, 10, 0.45) 0%,
-            rgba(35, 20, 10, 0.25) 50%,
-            rgba(35, 20, 10, 0.55) 100%);
+    background: rgba(0,0,0,0.38);
 }
 
 .hero-content {
@@ -405,6 +403,7 @@ p:last-child {
     margin: 0.5rem 0;
 }
 
+/* --- Monograma antigo (HTML/texto) — desativado ---
 .monogram-ring {
     width: 100px;
     height: 100px;
@@ -438,6 +437,23 @@ p:last-child {
 .mono-amp {
     font-size: 1.3rem;
     color: var(--gold-light);
+}
+--- fim monograma antigo --- */
+
+.hero-monogram-img {
+    width: 160px;
+    max-width: 180px;
+    height: auto;
+    display: block;
+    margin: 0 auto 1.5rem;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+.footer-monogram-img {
+    height: 60px;
+    width: auto;
+    display: block;
+    margin: 0 auto 0.5rem;
 }
 
 .hero-names {
@@ -641,7 +657,7 @@ p:last-child {
     font-family: var(--font-heading);
 }
 
-/* Timeline */
+/* --- Timeline removida (H3) ---
 .timeline {
     position: relative;
     margin-top: 2rem;
@@ -728,6 +744,7 @@ p:last-child {
     color: var(--gold-dark);
     font-size: 1.3rem;
 }
+--- fim timeline --- */
 
 /* -------------------------------------------------------
    10. AGENDA
