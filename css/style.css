@@ -868,8 +868,15 @@ p:last-child {
 }
 
 .agenda-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
     font-size: 2.5rem;
+    line-height: 1;
     opacity: 0.85;
+    flex-shrink: 0;
 }
 
 .agenda-card-body {
@@ -1734,6 +1741,12 @@ p:last-child {
         padding: 0.9rem 0;
     }
 
+    .navbar:not(.scrolled) {
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
+
     .nav-container {
         width: 92%;
     }
@@ -1751,7 +1764,7 @@ p:last-child {
         align-items: center;
         gap: 2.5rem;
         padding: 6rem 1.5rem 2rem;
-        z-index: 999;
+        z-index: 1005;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s;
@@ -1850,6 +1863,13 @@ p:last-child {
         padding-right: 5rem;
     }
 
+    .agenda-icon-wrap {
+        width: 2.9rem;
+        height: 2.9rem;
+        font-size: 2.15rem;
+        align-self: center;
+    }
+
     .mini-schedule {
         margin-left: 0;
         padding-left: 0.8rem;
@@ -1892,6 +1912,23 @@ p:last-child {
 }
 
 @media (max-width: 480px) {
+    .agenda-card-header {
+        padding-right: 4.4rem;
+    }
+
+    .agenda-icon-wrap {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1.85rem;
+    }
+
+    .agenda-badge {
+        top: 0.85rem;
+        right: 0.85rem;
+        padding: 0.28rem 0.68rem;
+        font-size: 0.62rem;
+    }
+
     .hero-names {
         font-size: 1.8rem;
     }
