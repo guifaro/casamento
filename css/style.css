@@ -2033,3 +2033,106 @@ p:last-child {
         font-size: 0.82rem;
     }
 }
+
+/* -------------------------------------------------------
+   PINTEREST BUTTONS - DRESS CODE STYLING
+------------------------------------------------------- */
+.pinterest-btn {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 1.5rem;
+    background: linear-gradient(135deg, #FFF5F5 0%, #FFF9F7 100%);
+    border: 2px solid #F4B49A;
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(232, 137, 106, 0.12);
+    cursor: pointer;
+}
+
+.pinterest-btn:hover {
+    border-color: #E8896A;
+    box-shadow: 0 8px 24px rgba(232, 137, 106, 0.2);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #FFE5E5 0%, #FFF5F2 100%);
+}
+
+.pinterest-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(232, 137, 106, 0.3);
+}
+
+.pinterest-btn-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.pinterest-btn-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.pinterest-btn-content strong {
+    font-size: 1.05rem;
+    color: #4A3728;
+    font-weight: 600;
+}
+
+.pinterest-btn-subtitle {
+    font-size: 0.85rem;
+    color: #999;
+    font-weight: 400;
+}
+
+.pinterest-arrow {
+    font-size: 1.3rem;
+    color: #E8896A;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.pinterest-btn:hover .pinterest-arrow {
+    transform: translateX(4px);
+}
+
+.pinterest-btn-feminino {
+    border-color: #F4B49A;
+}
+
+.pinterest-btn-feminino:hover {
+    border-color: #E8896A;
+}
+
+.pinterest-btn-masculino {
+    border-color: #5CC8C3;
+    background: linear-gradient(135deg, #F0FFFE 0%, #F5FCFB 100%);
+}
+
+.pinterest-btn-masculino:hover {
+    border-color: #3AADA8;
+    background: linear-gradient(135deg, #E0FFFE 0%, #F0F9F8 100%);
+    box-shadow: 0 8px 24px rgba(92, 200, 195, 0.2);
+}
+
+.pinterest-btn-masculino .pinterest-arrow {
+    color: #5CC8C3;
+}
+
+@media (max-width: 600px) {
+    .pinterest-btn {
+        padding: 1rem 1.2rem;
+        gap: 0.8rem;
+    }
+    
+    .pinterest-btn-icon {
+        font-size: 2rem;
+    }
+    
+    .pinterest-btn-content strong {
+        font-size: 0.95rem;
+    }
+}
