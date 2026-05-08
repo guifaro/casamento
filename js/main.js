@@ -178,13 +178,27 @@
                         setFaqExpanded(btn, true);
                     }
 
-                    // Scroll to the FAQ answer (small delay to allow layout changes)
-                    setTimeout(function () {
+                    // Wait for the CSS transition to finish (max-height transition ~0.4s),
+                    // then recalc heights and smoothly scroll to the opened answer.
+                    let fallbackTimer = null;
+
+                    function doScroll() {
                         refreshOpenFaqHeights();
                         const navHeight = navbar ? navbar.offsetHeight : 0;
                         const top = faqAnswer.getBoundingClientRect().top + window.scrollY - navHeight - 16;
                         window.scrollTo({ top: top, behavior: 'smooth' });
-                    }, 80);
+                        if (fallbackTimer) { clearTimeout(fallbackTimer); fallbackTimer = null; }
+                        faqAnswer.removeEventListener('transitionend', onTransitionEnd);
+                    }
+
+                    function onTransitionEnd(e) {
+                        // Trigger scroll when the answer's transition ends
+                        doScroll();
+                    }
+
+                    faqAnswer.addEventListener('transitionend', onTransitionEnd);
+                    // Fallback in case transitionend doesn't fire (use slightly longer than CSS)
+                    fallbackTimer = setTimeout(doScroll, 520);
                 } else {
                     const navHeight = navbar ? navbar.offsetHeight : 0;
                     const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
